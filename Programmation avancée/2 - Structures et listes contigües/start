@@ -1,0 +1,2 @@
+clang -W -Wall structures.c -lm -o a.out
+./a.out annu.txt
