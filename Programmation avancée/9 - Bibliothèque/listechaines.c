@@ -1,9 +1,9 @@
 #include "listechaines.h"
 
-#define MAXSIZE 30
-
 //Affichage de la liste en ligne
 void afficher_liste(Liste liste) {
+    if (liste == NULL) return;
+    
     printf("%s\n", liste->val);
     afficher_liste(liste->suiv);
 }
@@ -38,13 +38,13 @@ void ajout_alphab(Liste * pl, char * mot)
         // mot > mot prochain => ajouter après dans la liste
         if (strcmp(mot, (*pl)->val) > 0)
         {
-            ajout_alphab(&(*pl)->suiv,mot);
+            ajout_alphab(&(*pl)->suiv, mot);
         }
         //else => mot déjà dans la liste, ne rien faire?
     }
 }
 
-//Dit si un mot donne est dans la liste pas forcement triee
+//Dit si un mot donne est dans la liste pas forcément triée
 bool appartient(Liste liste, char * mot) {
     // Si la liste est vide
     if (liste == NULL) {
@@ -70,7 +70,7 @@ int taille(Liste liste) {
     return size;
 }
 
-//Construit une liste triee a partir d'un fichier
+//Construit une liste triée à partir d'un fichier
 void charge_fichier(FILE * fp, Liste * pl)
 {
     char mot[MAXSIZE];
@@ -88,11 +88,9 @@ void charge_fichier(FILE * fp, Liste * pl)
     if(ferror(fp)) printf("ERREUR de lecture\n");
 }
 
-//Destruction de Liste.
+//Destruction de la liste.
 void detruire_liste(Liste * liste) {
-    if (*liste == NULL) {
-        liste = NULL;
-    } else {
+    if (*liste != NULL) {
         supp_tete(liste);
         detruire_liste(liste);
     }

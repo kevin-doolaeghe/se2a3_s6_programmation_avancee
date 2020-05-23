@@ -1,0 +1,4 @@
+gcc -c listechaines.c -W -Wall
+gcc -c tp6.c -W -Wall
+ar -crs liblistechaines.a listechaines.o
+gcc tp6.o -L. -llistechaines -o prog

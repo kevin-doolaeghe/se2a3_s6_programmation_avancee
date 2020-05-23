@@ -11,7 +11,6 @@ struct cell {
     struct cell * suiv;
 };
 
-//OPTIONNEL: vous pouvez utiliser ces typedefs si vous voulez !
 typedef struct cell Cellule;
 typedef struct cell * Liste;
 typedef struct cell * PtCellule;
@@ -25,19 +24,17 @@ void ajout_tete(struct cell **, char *);
 //Suppression du mot en tete de la liste
 void supp_tete(struct cell **);
 
-//Ajout un mot dans une liste supposee
-// triee dans l'ordre alphabetique
+//Ajout un mot dans une liste supposee triée dans l'ordre alphabetique
 void ajout_alphab(struct cell **, char *);
 
-//Dit si un mot donne est dans la liste
-//pas forcement triee
+//Dit si un mot donné est dans la liste pas forcément triée
 bool appartient(struct cell *, char *);
 
 //Donne la taille de la liste.
 int taille(struct cell *);
 
-//construit une liste triee a partir d'un fichier
+//Construit une liste triée à partir d'un fichier
 void charge_fichier(FILE *, struct cell **);
 
-//Destruction de Liste.
+//Destruction de la liste.
 void detruire_liste(struct cell **);

@@ -2,7 +2,6 @@
 
 int main() {
     Liste liste = NULL;
-    ajout_alphab(&liste, "hello");
     
     FILE *fp;
     fp = fopen("dico.txt", "r");

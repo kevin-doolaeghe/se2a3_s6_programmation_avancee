@@ -1,3 +1,0 @@
-clang -c trees.c
-#Archivage
-ar r libtrees.a trees.o

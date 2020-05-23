@@ -1,2 +1,0 @@
-clang -W -Wall trees.c tree2pdf.c -o tree2pdf
-clang -W -Wall trees.c main.c -o main
