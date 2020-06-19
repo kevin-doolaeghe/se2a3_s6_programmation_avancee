@@ -2,13 +2,13 @@
 CC          = gcc
 
 # Executable name
-TARGET      = prgm
+TARGET      = project
 
 # Paths
 SRCDIR      = src
-OBJDIR      = obj
-PATHLIBH    = lib
-PATHLIBA    = lib
+OBJDIR      = build
+PATHLIBH    = includes
+PATHLIBA    = includes
 
 # Libraries to link
 LIBS        = $(addprefix -l, $(patsubst lib%, %, $(basename $(notdir $(wildcard $(PATHLIBA)/*.a))))) -lm
@@ -25,7 +25,15 @@ SRC         = $(addprefix $(SRCDIR)/, $(CFILES))
 
 OBJ         = $(addprefix $(OBJDIR)/, $(CFILES:.c=.o))
 
+#####################################################
+
 all : build
+
+build : prepare format $(EXEC)
+
+rebuild : clean build
+
+#####################################################
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDES)
@@ -33,17 +41,20 @@ $(OBJDIR)/%.o : $(SRCDIR)/%.c
 $(EXEC) : $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-build : $(EXEC)
-
-rebuild : clean build
+#####################################################
 
 prepare :
-	mkdir $(SRCDIR) $(OBJDIR) $(PATHLIBH) $(PATHLIBA)
+	mkdir -p $(OBJDIR)
+
+format :
+	clang-format -i $(SRCDIR)/*.c
+
+#####################################################
 
 clean :
-	rm -f $(OBJDIR)/*.o
+	rm -fr $(OBJDIR)/*.o
 
 mrproper :
-	rm -fr $(OBJDIR)/*
+	rm -fr $(OBJDIR)
 
 .PHONY : clean mrproper prepare
