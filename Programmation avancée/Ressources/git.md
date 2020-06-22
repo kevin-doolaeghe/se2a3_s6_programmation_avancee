@@ -53,7 +53,7 @@ https://git-scm.com/
 
 ★ Fusionner deux branches
    → git checkout <dst>
-   → git merge <src>
+   → git merge <src> [--no-ff]
 
 ★ Cloner un dépôt distant
    → git clone <url>
